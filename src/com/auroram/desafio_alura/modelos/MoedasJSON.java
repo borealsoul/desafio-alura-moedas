@@ -1,11 +1,12 @@
 package com.auroram.desafio_alura.modelos;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MoedasJson {
+public class MoedasJSON {
     private double ARS;
     private double BRL;
     private double USD;
@@ -21,5 +22,29 @@ public class MoedasJson {
         GBP = Double.parseDouble(conversion_rates.get("GBP"));
         PYG = Double.parseDouble(conversion_rates.get("PYG"));
         EUR = Double.parseDouble(conversion_rates.get("EUR"));
+    }
+
+    public double getARS() {
+        return ARS;
+    }
+
+    public double getBRL() {
+        return BRL;
+    }
+
+    public double getUSD() {
+        return USD;
+    }
+
+    public double getGBP() {
+        return GBP;
+    }
+
+    public double getPYG() {
+        return PYG;
+    }
+
+    public double getEUR() {
+        return EUR;
     }
 }

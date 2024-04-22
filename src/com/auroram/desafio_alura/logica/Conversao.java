@@ -4,21 +4,34 @@ import com.auroram.desafio_alura.modelos.MoedasJSON;
 
 import java.util.Optional;
 import java.util.OptionalDouble;
-import java.util.OptionalInt;
 
 public class Conversao {
-    private String moedaOriginal;
-    private String moedaDestino;
+    private Optional<String> moedaOriginal;
+    private Optional<String> moedaDestino;
+    private OptionalDouble valorOriginal;
 
-    public Conversao(String moedaOriginal, String moedaDestino) {
+    public OptionalDouble getValorOriginal() {
+        return valorOriginal;
+    }
+
+    public Optional<String> getMoedaOriginal() {
+        return moedaOriginal;
+    }
+
+    public Optional<String> getMoedaDestino() {
+        return moedaDestino;
+    }
+
+    public Conversao(OptionalDouble valorOriginal, Optional<String> moedaOriginal, Optional<String> moedaDestino) {
+        this.valorOriginal = valorOriginal;
         this.moedaOriginal = moedaOriginal;
         this.moedaDestino = moedaDestino;
     }
 
-    public OptionalDouble Converta(double quantidadeMoeda, Optional<MoedasJSON> moedasJSON) {
+    public OptionalDouble Converta(OptionalDouble quantidadeMoeda, Optional<MoedasJSON> moedasJSON) {
         double valorMoedaDestino = moedasJSON.map(
                 json ->
-                    switch (this.moedaDestino) {
+                    switch (this.moedaDestino.stream().findFirst().orElse("")) {
                         case "ARS" -> json.getARS();
                         case "BRL" -> json.getBRL();
                         case "USD" -> json.getUSD();
@@ -29,7 +42,9 @@ public class Conversao {
                     }
         ).stream().findFirst().orElse(0.0);
 
-        return OptionalDouble.of(valorMoedaDestino * quantidadeMoeda);
+        return OptionalDouble.of(
+                valorMoedaDestino * quantidadeMoeda.stream().findFirst().orElse(0.0)
+        );
 
     }
 }

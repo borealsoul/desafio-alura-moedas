@@ -21,7 +21,8 @@ public class MapeadorJSON {
                         MoedasJSON.class
                     )
             ); } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            return Optional.empty();
+            // throw new RuntimeException(e);
         }
     }
 }

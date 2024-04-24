@@ -11,11 +11,13 @@ import java.util.stream.Stream;
 public class MapeadorJSON {
     ObjectMapper mapeador = new ObjectMapper();
 
+    // Mapeie(Optional<String> JSON) -> Optional<MoedaJSON
+    // -- Mapeia o JSON em String e retorna já deserializado em MoedasJSON.
     public Optional<MoedasJSON> Mapeie(Optional<String> JSON) {
         try {
             return Optional.of(
                     mapeador.readValue(
-                        Stream.of(JSON)
+                        Stream.of(JSON)                         // Converte Optional<String> para String.
                                 .flatMap(Optional::stream)
                                 .collect(Collectors.joining()),
                         MoedasJSON.class

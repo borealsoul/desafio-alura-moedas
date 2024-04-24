@@ -11,6 +11,8 @@ public class Main {
     public static void main(String[] args) {
         String chaveAPI = "777bed9a3d24560355c8dd08";
         String URLAPI = "https://v6.exchangerate-api.com/v6/";
+
+        // Classes do java em geral.
         InterfaceTerminal interacaoTerminal = new InterfaceTerminal();
         InterfaceHTTP requisitorHTTP = new InterfaceHTTP();
         MapeadorJSON mapeador = new MapeadorJSON();
